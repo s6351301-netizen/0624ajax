@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 移除 body 預設邊距，確保能完全貼牆 */
+        body {
+            margin: 0;
+            overflow: hidden;
+            /* 防止產生捲軸 */
+        }
+
+        .box {
+            width: 150px;
+            height: 150px;
+            background-color: lightblue;
+            position: relative;
+            left: 0px;
+            top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(document).ready(function () {
+            function startAnimation() {
+                // 動態計算當前瀏覽器視窗的極限牆面位置
+                // 牆面位置 = 視窗大小 - 方塊自身大小
+                var maxLeft = $(window).width() - $('.box').outerWidth();
+                var maxTop = $(window).height() - $('.box').outerHeight();
+
+                $('.box')
+                    // 1. 往右移到最右側牆面
+                    .animate({ left: maxLeft + 'px', top: '0px' }, 750, 'linear')
+                    // 2. 往下移到最底部牆面
+                    .animate({ left: maxLeft + 'px', top: maxTop + 'px' }, 750, 'linear')
+                    // 3. 往左移回最左側牆面
+                    .animate({ left: '0px', top: maxTop + 'px' }, 750, 'linear')
+                    // 4. 往上移回原點 (0, 0)，並在結束時重複呼叫自己
+                    .animate({ left: '0px', top: '0px' }, 750, 'linear', function () {
+                        startAnimation(); // 完美無限循環
+                    });
+            }
+
+            // 啟動動畫
+            startAnimation();
+
+            // 選擇性加入：當使用者縮放視窗時，強制停止舊動畫並重新計算，避免跑版
+            $(window).resize(function () {
+                $('.box').stop(true, true);
+                startAnimation();
+            });
+        });
+    </script>
+</body>
+
+</html>

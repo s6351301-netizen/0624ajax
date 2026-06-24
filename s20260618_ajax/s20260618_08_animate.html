@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 150px;
+            height: 150px;
+            background-color: lightblue;
+
+            /* jquery 如果要移動 記得使用postion: relative */
+            /* 原本的絕對定位是必須的，這樣 jQuery 的 top/left 才能正常運作  */
+            position: relative;
+            left: 0px;
+            top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+
+    </div>
+
+
+    <!-- jquery  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        // jquery 寫code
+        $(document).ready(function () {
+            function startAnimation() {
+                $('.box')
+                    // 1. 往右移到 1000px (耗時 0.75秒)
+                    .animate({ left: '1000px', top: '80px' }, 750, 'linear')
+                    // 2. 往下移到 580px (耗時 0.75秒)
+                    .animate({ left: '1000px', top: '580px' }, 750, 'linear')
+                    // 3. 往左移回 0px (耗時 0.75秒)
+                    .animate({ left: '0px', top: '580px' }, 750, 'linear')
+                    // 4. 往上移回原點 80px (耗時 0.75秒)，並在結束時重複呼叫自己
+                    .animate({ left: '0px', top: '80px' }, 750, 'linear', function () {
+                        startAnimation(); // 關鍵：動畫結束後再次執行，達到 infinite 效果
+                    });
+            }
+
+            // 啟動動畫
+            startAnimation();
+
+        });
+    </script>
+</body>
+
+</html>

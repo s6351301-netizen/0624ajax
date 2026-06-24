@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="box">
+
+    </div>
+
+
+    <!-- jquery  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        // jquery 寫code
+        $(document).ready(function () {
+
+            $.ajax({
+                type: "method", //type get / post
+                url: "url", //url
+                data: "data", //給對方的資料
+                dataType: "dataType", //接收資料type
+                success: function (response) {
+                    
+                }
+            });
+
+            let data ={
+                money : 50,
+                item : 1
+            };
+            $.ajax({
+                type: "get", //type get / post
+                url: "abc.com", //url
+                data: data, //給對方的資料
+                dataType: "json", //接收資料type
+                success: function (response) {
+                    
+                }
+            });
+
+            // $.get("url", data,
+            //     function (data, textStatus, jqXHR) {
+                    
+            //     },
+            //     "dataType"
+            // );
+
+            // $.getJSON("url", data,
+            //     function (data, textStatus, jqXHR) {
+                    
+            //     }
+            // );
+            
+            // $.post("url", data,
+            //     function (data, textStatus, jqXHR) {
+                    
+            //     },
+            //     "dataType"
+            // );
+
+            // $(selector).load("url", "data", function (response, status, request) {
+            //     this; // dom element
+                
+            // });
+        });
+    </script>
+</body>
+
+</html>

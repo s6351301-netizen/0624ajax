@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 80%;
+            height: 20vh;
+            /* background-color: #ccc; */
+            margin: auto;
+            text-align: center;
+
+        }
+
+        .output-container {
+            background-color: lightpink;
+            text-align: center;
+            width: 80%;
+            height: 40vh;
+            margin: auto;
+            border-radius: 20px;
+        }
+
+        .box {
+            width: 33%;
+            height: 50%;
+            background-color: lightblue;
+            padding-top: 20px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .bg-blue {
+            background-color: lightblue;
+        }
+
+        .bg-pink {
+            background-color: lightpink;
+        }
+
+        /* .box1 {
+            display: none;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box slideDownBtn">
+            slideDown
+        </div>
+        <div class="box slideUpBtn">
+            slideUp
+        </div>
+        <div class="box slideToggleBtn">
+            slideToggle
+        </div>
+    </div>
+
+    <div class="output-container">
+
+    </div>
+
+
+
+    <!-- jquery  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        // jquery 寫code
+        $(document).ready(function () {
+
+            // 1.bind
+            const slideDownBtn = $('.slideDownBtn');
+            const slideUpBtn = $('.slideUpBtn');
+            const slideToggleBtn = $('.slideToggleBtn');
+            const outputContainer = $('.output-container');
+
+            // 2.action
+
+            // slideDownBtn click
+            slideDownBtn.click(function (e) {
+                // e.preventDefault();
+                outputContainer.slideDown();
+            });
+
+            // slideUpBtn click
+            slideUpBtn.click(function (e) {
+                // e.preventDefault();
+                outputContainer.slideUp();
+            });
+
+            // slideToggleBtn click
+            slideToggleBtn.click(function (e) {
+                // e.preventDefault();
+                outputContainer.slideToggle();
+            });
+
+
+        });
+    </script>
+</body>
+
+</html>
