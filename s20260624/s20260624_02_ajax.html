@@ -14,6 +14,7 @@
     <div class="box">
 
     </div>
+    <span id="mySpan"></span>
 
 
     <!-- jquery  -->
@@ -27,16 +28,38 @@
         // jquery 寫code
         $(document).ready(function () {
 
+            // 1.bind
+            const mySpan = $('#mySpan');
+            // 2.action
+
+
             let url = "./s20260624_01_data.php";
+
+            // 當我指定是dataType json , php端只能為json_encode的資料 而且 還要echo
+            // echo json_encode($data);
             $.ajax({
                 type: "get",
                 url: url,
                 // data: "data",
-                // dataType: "json",
-                success: function (response) {
-                    console.log('response', response);
+                dataType: "json",
+                success: function (res) {
+                    console.log('res', res);
+                    console.log('res typeof', typeof (res));
 
-                }
+                    // mySpan.html(res); //js innerHtml html語法
+                    // mySpan.text(res); //js innerText 字串
+                },
+                // 顯示錯誤
+                // error: function (xhr, status, error) {
+                //     console.error('請求失敗！');
+                //     console.error('狀態碼 (Status):', xhr.status);        // 例如：404, 500
+                //     console.error('錯誤訊息 (Error):', error);             // 瀏覽器提供的錯誤字串
+                //     console.error('伺服器回應內容:', xhr.responseText);   // 後端回傳的詳細錯誤 HTML 或 JSON
+
+                //     // 你也可以在這裡放 alert 或通知套件提示使用者
+                //     alert("資料載入失敗，請稍後再試。");
+                // }
+
             });
 
         });
